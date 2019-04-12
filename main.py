@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from argparse import ArgumentParser
-
+import subprocess
 import youtube_dl
 
 
@@ -16,6 +16,7 @@ def DownloadMP3(url, file_name):
 }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
+    subprocess.call(["play", "output/"+file_name+".mp3"])
 
 if __name__ == '__main__':
     parser = ArgumentParser()
