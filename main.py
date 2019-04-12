@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 from argparse import ArgumentParser
-import vlc
+
 import youtube_dl
+
 
 def DownloadMP3(url, file_name):
     ydl_opts = {
