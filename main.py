@@ -1,25 +1,24 @@
 from argparse import ArgumentParser
-
+import vlc
 import youtube_dl
 
-ydl_opts = {
-	'format': 'bestaudio/best',
-	'postprocessors': [{
-		'key': 'FFmpegExtractAudio',
-		'preferredcodec': 'mp3',
-		'preferredquality': '192',
-	}]
+def DownloadMP3(url, file_name):
+    ydl_opts = {
+    'outtmpl': 'output/'+file_name+'.webm',
+    'format': 'bestaudio/best',
+        'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }]
 }
-
-
-def DownloadMP3(url):		
-    
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])	
+        ydl.download([url])
 
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument("-url", help="Input youtubeurl")
+    parser.add_argument("-fname", help="Input file name")
     args = parser.parse_args()
 
-    DownloadMP3(args.url)
+    DownloadMP3(args.url, args.fname)
